@@ -1,2 +1,2 @@
-# leetCode
+# LeetCode
 Repo containing LetCode problems
