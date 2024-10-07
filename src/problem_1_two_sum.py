@@ -30,19 +30,37 @@ for i in range(len(nums)):
     print(i)
 
 class Solution:
+    '''One pass dict'''
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        nums_map = {}
-        for i in range(len(nums)):
-            nums_map[nums[i]]=i
+        num_dict = {}
+        n = len(nums)
+        for i in range(n):
+            complement = target - nums[i]
+            if complement in num_dict:
+                return(num_dict[complement], i)
+            num_dict[nums[i]] = i
 
-        for value, key in nums_map.items():
-            addend1 = value
-            addend1_index = key
-            addend2 = target - addend1
-            addend2_index = nums_map[addend2]
-        return (addend1_index, addend2_index)
-    
+        return [] #No solution found
+
+
+class Sotuion_Two:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        num_dict = {}
+        n = len(nums)
+
+        for i in range(n):
+            num_dict[nums[i]]=i
+        
+        for i in range(n):
+            complement = target - nums[i]
+            if complement in num_dict and i != num_dict[complement]:
+                return (i, num_dict[complement])
+
+        return [] #No solution found
+
+
 if __name__ == "__main__":
-    solution = Solution
+    solution = Solution()
+    solution_values= solution.twoSum([1,2,3],3)
     solution_values= solution.twoSum([1,2,3],3)
     print(solution_values)
